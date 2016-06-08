@@ -6,7 +6,22 @@ end
 
 question_file = File.open("questions.csv")
 questions = question_file.readlines()
+questions = questions.slice(1, questions.length - 1)
 qids = []
+strands = {1 => 0, 2 => 0}
 num_questions.times do
-  qids.push(questions[rand(questions.size)].split(",")[4])
+  current_size = qids.size
+  until qids.size > current_size
+    qid = rand(questions.size)
+    current_strand = questions[qid][0].to_i
+    # puts "current_strand: #{current_strand}"
+    # puts strands[current_strand]
+    if (strands[1] >= strands[2] && current_strand == 2) ||
+      (strands[1] <= strands[2] && current_strand == 1)
+      puts "inserting"
+      qids.push(questions[qid].split(",")[4])
+    end
+  end
 end
+
+puts qids
