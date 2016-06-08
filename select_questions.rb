@@ -11,7 +11,7 @@ questions = questions.slice(1, questions.length - 1)
 qids = []
 strands = {1 => 0, 2 => 0}
 standards = Array.new(6,0)
-puts "questions size: #{questions.size}"
+
 num_questions.times do
   current_size = qids.size
   until qids.size > current_size
@@ -40,5 +40,13 @@ num_questions.times do
     end
   end
 end
+difficulties = []
+qids.each_with_index do |current, i|
+  difficulties.push([questions[current.to_i - 1].split(",")[-1], current])
+end
 
+difficulties.sort!
+difficulties.each_with_index do |diff, i|
+  qids[i] = diff[1]
+end
 puts qids
