@@ -18,10 +18,12 @@ num_questions.times do
     # puts strands[current_strand]
     if (strands[1] >= strands[2] && current_strand == 2) ||
       (strands[1] <= strands[2] && current_strand == 1)
-      puts "inserting"
+      puts "inserting #{current_strand}"
       qids.push(questions[qid].split(",")[4])
+      strands[current_strand] += 1
     end
   end
 end
 
 puts qids
+puts strands
