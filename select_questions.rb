@@ -28,7 +28,6 @@ num_questions.times do
     end
 
     current_qid = questions[qid].split(",")[4]
-    puts "cqid: #{current_qid}"
 
     if ((strands[1] >= strands[2] && current_strand == 2) ||
       (strands[1] <= strands[2] && current_strand == 1)) &&
@@ -43,5 +42,3 @@ num_questions.times do
 end
 
 puts qids
-puts strands
-puts standards
